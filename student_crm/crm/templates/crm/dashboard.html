@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard | Student CRM{% endblock %}
+{% block content %}
+<div class="row g-3 mb-4">
+    <div class="col-md-4"><div class="card p-4"><h6>Total Students</h6><h2>{{ student_count }}</h2></div></div>
+    <div class="col-md-4"><div class="card p-4"><h6>Total Courses</h6><h2>{{ course_count }}</h2></div></div>
+    <div class="col-md-4"><div class="card p-4"><h6>Total Enrollments</h6><h2>{{ enrollment_count }}</h2></div></div>
+</div>
+<div class="card p-4">
+    <h5 class="mb-3">Recent Enrollments</h5>
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead><tr><th>Student</th><th>Course</th><th>Date</th></tr></thead>
+            <tbody>
+            {% for enrollment in recent_enrollments %}
+                <tr>
+                    <td>{{ enrollment.student.name }}</td>
+                    <td>{{ enrollment.course.name }}</td>
+                    <td>{{ enrollment.enrollment_date }}</td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="3">No enrollments yet.</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
