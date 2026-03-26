@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 
 
 class Student(models.Model):
@@ -32,7 +31,7 @@ class Course(models.Model):
 class Enrollment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='enrollments')
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='enrollments')
-    enrollment_date = models.DateField(default=timezone.now)
+    enrollment_date = models.DateField(auto_now_add=True)
 
     class Meta:
         ordering = ['-enrollment_date']
